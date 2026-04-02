@@ -1,6 +1,7 @@
 import { Mail, MapPin, Linkedin, Phone, ArrowRight, Globe, TrendingUp, Shield, Building2, BarChart3, Cpu, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SocialMediaBar } from "@/components/SocialMediaBar";
 
 const services = [
   { name: "Partnerships", icon: Users, desc: "Strategic alliance structuring and joint ventures across the GCC" },
@@ -165,6 +166,11 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Social Media Section */}
+      <section className="relative z-10 border-t border-border/50 bg-card/20">
+        <SocialMediaBar />
+      </section>
+
       {/* Footer */}
       <footer id="contact" className="relative z-10 border-t border-border/50 py-16 bg-card/30 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
@@ -175,17 +181,10 @@ const Index = () => {
               </div>
               <span className="text-lg font-bold text-foreground">Dillon & Bird</span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-5">
               UAE-based strategy consulting firm advising founders and enterprises across the GCC.
             </p>
-            <div className="flex gap-3 mt-4">
-              <a href="#" className="w-8 h-8 rounded-md border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-8 h-8 rounded-md border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300">
-                <Mail className="w-4 h-4" />
-              </a>
-            </div>
+            <SocialMediaBar compact />
           </div>
 
           <div>
@@ -218,7 +217,7 @@ const Index = () => {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-border/30 text-center">
-          <p className="text-xs text-muted-foreground">© 2024 Dillon & Bird Partners. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2026 Dillon & Bird Partners. All rights reserved.</p>
         </div>
       </footer>
     </div>
