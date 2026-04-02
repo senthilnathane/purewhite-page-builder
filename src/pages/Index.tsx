@@ -1,6 +1,7 @@
 import { Mail, MapPin, Linkedin, Phone, ArrowRight, Globe, TrendingUp, Shield, Building2, BarChart3, Cpu, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SocialMediaBar } from "@/components/SocialMediaBar";
 
 const services = [
   { name: "Partnerships", icon: Users, desc: "Strategic alliance structuring and joint ventures across the GCC" },
