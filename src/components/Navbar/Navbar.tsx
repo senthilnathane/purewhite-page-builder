@@ -1,13 +1,9 @@
-'use client';
-
 import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 
 function Navbar() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
   const [servicesArrow, setServicesArrow] = useState(false);
@@ -29,24 +25,24 @@ function Navbar() {
     pathname.startsWith('/financialplanninginvestorservices') ||
     pathname.startsWith('/technologyconsulting') ||
     pathname.startsWith('/audit') ||
-    pathname.startsWith('/accountingbookkeeping');
-    pathname.startsWith('/cmolanding');
-    pathname.startsWith('/insolvencyliquidation');
+    pathname.startsWith('/accountingbookkeeping') ||
+    pathname.startsWith('/cmolanding') ||
+    pathname.startsWith('/insolvencyliquidation') ||
     pathname.startsWith('/bankingservices');
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <Link href="/" className={styles.logo}>
-            <Image src="/logo.svg" alt="Dillon & Bird" width={28} height={28} />
+          <Link to="/" className={styles.logo}>
+            <img src="/logo.svg" alt="Dillon & Bird" width={28} height={28} />
             <span>Dillon & Bird</span>
           </Link>
 
           {/* DESKTOP NAV */}
           <nav className={styles.desktopNav}>
             <Link
-              href="/about"
+              to="/about"
               className={`${styles.navLink} ${isActive('/about') ? styles.active : ''}`}
             >
               Who We Are
@@ -66,19 +62,19 @@ function Navbar() {
               </button>
 
               <div className={styles.menu}>
-                <Link href="/companyformation" className={styles.menuItem}>Company Formation</Link>
-                <Link href="/audit" className={styles.menuItem}>Audit Services</Link>
-                <Link href="/accountingbookkeeping" className={styles.menuItem}>Accounting & Book Keeping</Link>  {/* ← added */}
-                <Link href="/cmolanding" className={styles.menuItem}>CMO Services</Link>
-                <Link href="/insolvencyliquidation" className={styles.menuItem}>Insolvency Liquidation</Link>  {/* ← added */}
-                <Link href="/bankingservices" className={styles.menuItem}>Banking Services</Link>
-                <Link href="/partnership" className={styles.menuItem}>Partnerships</Link>
-                <Link href="/managementconsulting" className={styles.menuItem}>Management Consulting</Link>
-                <Link href="/corporateservices" className={styles.menuItem}>Corporate Services</Link>
-                <Link href="/businesssetup" className={styles.menuItem}>Business Setup</Link>
-                <Link href="/accountingfinancialservices" className={styles.menuItem}>Accounting & Financial Services</Link>
-                <Link href="/financialplanninginvestorservices" className={styles.menuItem}>Financial Planning & Investor Services</Link>
-                <Link href="/technologyconsulting" className={styles.menuItem}>Technology Consulting</Link>
+                <Link to="/companyformation" className={styles.menuItem}>Company Formation</Link>
+                <Link to="/audit" className={styles.menuItem}>Audit Services</Link>
+                <Link to="/accountingbookkeeping" className={styles.menuItem}>Accounting & Book Keeping</Link>
+                <Link to="/cmolanding" className={styles.menuItem}>CMO Services</Link>
+                <Link to="/insolvencyliquidation" className={styles.menuItem}>Insolvency Liquidation</Link>
+                <Link to="/bankingservices" className={styles.menuItem}>Banking Services</Link>
+                <Link to="/partnership" className={styles.menuItem}>Partnerships</Link>
+                <Link to="/managementconsulting" className={styles.menuItem}>Management Consulting</Link>
+                <Link to="/corporateservices" className={styles.menuItem}>Corporate Services</Link>
+                <Link to="/businesssetup" className={styles.menuItem}>Business Setup</Link>
+                <Link to="/accountingfinancialservices" className={styles.menuItem}>Accounting & Financial Services</Link>
+                <Link to="/financialplanninginvestorservices" className={styles.menuItem}>Financial Planning & Investor Services</Link>
+                <Link to="/technologyconsulting" className={styles.menuItem}>Technology Consulting</Link>
               </div>
             </div>
 
@@ -98,13 +94,13 @@ function Navbar() {
               </button>
 
               <div className={styles.menu}>
-                <Link href="/casestudies/technologystartup" className={styles.menuItem}>Technology Startup</Link>
-                <Link href="/casestudies/retailbusiness" className={styles.menuItem}>Retail Business</Link>
+                <Link to="/casestudies/technologystartup" className={styles.menuItem}>Technology Startup</Link>
+                <Link to="/casestudies/retailbusiness" className={styles.menuItem}>Retail Business</Link>
               </div>
             </div>
 
             <Link
-              href="/contact"
+              to="/contact"
               className={`${styles.navLink} ${isActive('/contact') ? styles.active : ''}`}
             >
               Let's Connect
@@ -113,7 +109,7 @@ function Navbar() {
 
           {/* PHONE */}
           <div className={styles.phone}>
-            <Image src="/uae-flag.svg" alt="UAE Flag" width={22} height={14} />
+            <img src="/uae-flag.svg" alt="UAE Flag" width={22} height={14} />
             <span className={styles.divider}></span>
             <span className={styles.phoneText}>+971 585 570 593</span>
           </div>
@@ -128,8 +124,8 @@ function Navbar() {
         <div className={styles.mobileOverlay}>
           <div className={styles.mobilePanel}>
             <div className={styles.mobileHeader}>
-              <Link href="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
-                <Image src="/logo.svg" alt="Dillon & Bird" width={24} height={24} />
+              <Link to="/" className={styles.logo} onClick={() => setMobileOpen(false)}>
+                <img src="/logo.svg" alt="Dillon & Bird" width={24} height={24} />
                 <span>Dillon & Bird</span>
               </Link>
               <button className={styles.closeBtn} onClick={() => setMobileOpen(false)}>✕</button>
@@ -137,14 +133,13 @@ function Navbar() {
 
             <nav className={styles.mobileNav}>
               <Link
-                href="/about"
+                to="/about"
                 className={`${styles.mobileLink} ${isActive('/about') ? styles.active : ''}`}
                 onClick={() => setMobileOpen(false)}
               >
                 Who We Are
               </Link>
 
-              {/* WHAT WE DO */}
               <div
                 className={`${styles.mobileItem} ${isServicesActive ? styles.active : ''}`}
                 onClick={() => toggleAccordion('services')}
@@ -160,24 +155,22 @@ function Navbar() {
 
               {mobileAccordion === 'services' && (
                 <div className={styles.mobileSubmenu}>
-                  <Link href="/companyformation" onClick={() => setMobileOpen(false)}>Company Formation</Link>
-                  <Link href="/audit" onClick={() => setMobileOpen(false)}>Audit Services</Link> {/* ← added */}
-                  <Link href="/accountingbookkeeping" onClick={() => setMobileOpen(false)}>Accounting & Book Keeping</Link> {/* ← added */}
-                  <Link href="/cmolanding" onClick={() => setMobileOpen(false)}>CMO Services</Link> {/* ← added */}
-                  <Link href="/insolvencyliquidation" onClick={() => setMobileOpen(false)}>Insolvency Liquidation</Link> {/* ← added */}
-                  <Link href="/bankingservices" onClick={() => setMobileOpen(false)}>Banking Services</Link> {/* ← added */}
-                  <Link href="/partnership" onClick={() => setMobileOpen(false)}>Partnerships</Link>
-                  <Link href="/managementconsulting" onClick={() => setMobileOpen(false)}>Management Consulting</Link>
-                  <Link href="/corporateservices" onClick={() => setMobileOpen(false)}>Corporate Services</Link>
-                  <Link href="/businesssetup" onClick={() => setMobileOpen(false)}>Business Setup</Link>
-                  <Link href="/accountingfinancialservices" onClick={() => setMobileOpen(false)}>Accounting & Financial Services</Link>
-                  <Link href="/financialplanninginvestorservices" onClick={() => setMobileOpen(false)}>Financial Planning & Investor Services</Link>
-                  <Link href="/technologyconsulting" onClick={() => setMobileOpen(false)}>Technology Consulting</Link>
-                  
+                  <Link to="/companyformation" onClick={() => setMobileOpen(false)}>Company Formation</Link>
+                  <Link to="/audit" onClick={() => setMobileOpen(false)}>Audit Services</Link>
+                  <Link to="/accountingbookkeeping" onClick={() => setMobileOpen(false)}>Accounting & Book Keeping</Link>
+                  <Link to="/cmolanding" onClick={() => setMobileOpen(false)}>CMO Services</Link>
+                  <Link to="/insolvencyliquidation" onClick={() => setMobileOpen(false)}>Insolvency Liquidation</Link>
+                  <Link to="/bankingservices" onClick={() => setMobileOpen(false)}>Banking Services</Link>
+                  <Link to="/partnership" onClick={() => setMobileOpen(false)}>Partnerships</Link>
+                  <Link to="/managementconsulting" onClick={() => setMobileOpen(false)}>Management Consulting</Link>
+                  <Link to="/corporateservices" onClick={() => setMobileOpen(false)}>Corporate Services</Link>
+                  <Link to="/businesssetup" onClick={() => setMobileOpen(false)}>Business Setup</Link>
+                  <Link to="/accountingfinancialservices" onClick={() => setMobileOpen(false)}>Accounting & Financial Services</Link>
+                  <Link to="/financialplanninginvestorservices" onClick={() => setMobileOpen(false)}>Financial Planning & Investor Services</Link>
+                  <Link to="/technologyconsulting" onClick={() => setMobileOpen(false)}>Technology Consulting</Link>
                 </div>
               )}
 
-              {/* CASE STUDIES */}
               <div
                 className={`${styles.mobileItem} ${pathname.startsWith('/casestudies') ? styles.active : ''}`}
                 onClick={() => toggleAccordion('blogs')}
@@ -193,13 +186,13 @@ function Navbar() {
 
               {mobileAccordion === 'blogs' && (
                 <div className={styles.mobileSubmenu}>
-                  <Link href="/casestudies/technologystartup" onClick={() => setMobileOpen(false)}>Technology Startup</Link>
-                  <Link href="/casestudies/retailbusiness" onClick={() => setMobileOpen(false)}>Retail Business</Link>
+                  <Link to="/casestudies/technologystartup" onClick={() => setMobileOpen(false)}>Technology Startup</Link>
+                  <Link to="/casestudies/retailbusiness" onClick={() => setMobileOpen(false)}>Retail Business</Link>
                 </div>
               )}
 
               <Link
-                href="/contact"
+                to="/contact"
                 className={`${styles.mobileLink} ${isActive('/contact') ? styles.active : ''}`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -208,7 +201,7 @@ function Navbar() {
             </nav>
 
             <div className={styles.mobilePhone}>
-              <Image src="/uae-flag.svg" alt="UAE Flag" width={26} height={18} />
+              <img src="/uae-flag.svg" alt="UAE Flag" width={26} height={18} />
               <span className={styles.divider}></span>
               <span className={styles.phoneText}>+971 585 570 593</span>
             </div>
